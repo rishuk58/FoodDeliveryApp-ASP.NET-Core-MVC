@@ -1,0 +1,40 @@
+﻿@model List<CartItem>
+
+<div class="container mt-5">
+    <h2>Your Cart 🛒</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Food</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FoodName</td>
+                <td><img src="@item.ImageUrl" width="80" /></td>
+                <td>₹@item.Price</td>
+                <td>@item.Quantity</td>
+                <td>
+                    <a asp-action="Remove"
+                           asp-controller="Cart"
+                           asp-route-id="@item.Id"
+                           class="btn btn-danger">
+                        Remove
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <a asp-action="Checkout" asp-controller="Cart" class="btn btn-success">
+        Checkout
+    </a>
+
+    
+    
+</div>
